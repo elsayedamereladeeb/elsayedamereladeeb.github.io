@@ -22,18 +22,20 @@ color:var(--text);
 overflow-x:hidden;
 }
 
+/* ===== HERO ===== */
+
 .hero{
 height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
 url("profile.jpg") center/cover fixed;
 }
 
 .hero h1{
-font-size:42px;
+font-size:44px;
 margin-bottom:15px;
 }
 
@@ -41,6 +43,13 @@ margin-bottom:15px;
 color:var(--primary);
 font-weight:600;
 font-size:20px;
+margin-bottom:10px;
+}
+
+.phone{
+font-size:16px;
+opacity:.9;
+margin-bottom:15px;
 }
 
 .btn{
@@ -52,6 +61,80 @@ color:#000;
 border-radius:30px;
 text-decoration:none;
 font-weight:600;
+}
+
+/* ===== Sections ===== */
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:80px 20px;
+}
+
+.glass{
+background:var(--glass);
+backdrop-filter:blur(20px);
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(0,0,0,.4);
+margin-bottom:60px;
+}
+
+.section h2{
+margin-bottom:25px;
+color:var(--primary);
+}
+
+/* ===== Certifications ===== */
+
+.cert-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.cert-card{
+position:relative;
+overflow:hidden;
+border-radius:20px;
+transition:.4s ease;
+transform:translateY(40px);
+opacity:0;
+}
+
+.cert-card img{
+width:100%;
+display:block;
+border-radius:20px;
+transition:.6s ease;
+}
+
+.cert-card::after{
+content:"View Certificate";
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+background:linear-gradient(transparent,rgba(0,0,0,.8));
+color:white;
+text-align:center;
+padding:20px;
+opacity:0;
+transition:.4s;
+}
+
+.cert-card:hover img{
+transform:scale(1.1);
+}
+
+.cert-card:hover::after{
+opacity:1;
+}
+
+/* Fade in animation */
+.show{
+transform:translateY(0);
+opacity:1;
 }
 
 /* ===== Dock ===== */
@@ -98,7 +181,7 @@ transform:scale(1.2);
 .facebook{color:#1877F2;}
 .gmail{color:#EA4335;}
 
-/* ===== POPUP ===== */
+/* ===== Popup ===== */
 
 .popup-overlay{
 position:fixed;
@@ -152,63 +235,90 @@ font-weight:600;
 
 @media(max-width:600px){
 .hero h1{font-size:28px}
-.dock{gap:15px;padding:15px 20px}
 }
 </style>
 </head>
 
 <body>
 
+<!-- HERO -->
 <section class="hero">
 <div>
 <h1>Elsayed Amer Eladeeb</h1>
 <div class="typing"></div>
+<div class="phone">📱 +20 103 361 0061</div>
 <a href="CV.pdf" class="btn" target="_blank">Download CV</a>
 </div>
 </section>
 
-<!-- ===== Dock ===== -->
+<!-- CONTENT -->
+<div class="container">
 
+<div class="glass section">
+<h2>About Me</h2>
+<p>
+Experienced IT Technician specializing in hardware troubleshooting,
+Windows installation, networking basics, and remote support solutions.
+</p>
+</div>
+
+<div class="glass section">
+<h2>Certifications</h2>
+<div class="cert-grid">
+
+<!-- 12 Certificates -->
+<script>
+for(let i=1;i<=12;i++){
+document.write(`
+<div class="cert-card">
+<img src="cert${i}.jpg">
+</div>
+`);
+}
+</script>
+
+</div>
+</div>
+
+</div>
+
+<!-- Dock -->
 <div class="dock">
 
 <a href="https://wa.me/201033610061" target="_blank" class="dock-item whatsapp">
-<svg viewBox="0 0 32 32"><path fill="currentColor" d="M16 .4C7.5.4.5 7.4.5 15.9c0 2.8.8 5.6 2.2 8L.4 31.6l7.9-2.1c2.3 1.3 4.9 2 7.7 2 8.5 0 15.5-7 15.5-15.5S24.5.4 16 .4z"/></svg>
 <span>WhatsApp</span>
 </a>
 
 <div class="dock-item wechat" onclick="openPopup()">
-<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.5 2 2 5.6 2 10c0 2.4 1.4 4.6 3.7 6l-.8 3 3.2-1.7c1.2.3 2.5.5 3.9.5 5.5 0 10-3.6 10-8s-4.5-8-10-8z"/></svg>
 <span>WeChat</span>
 </div>
 
 <a href="https://www.linkedin.com/in/elsayed-amer-eladeeb-0a02b5196/" target="_blank" class="dock-item linkedin">
-<svg viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4v16h-4V8zm7 0h3.8v2.2h.1c.5-1 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6V24h-4v-7.1c0-1.7 0-3.9-2.4-3.9s-2.8 1.8-2.8 3.8V24h-4V8z"/></svg>
 <span>LinkedIn</span>
 </a>
 
 <a href="https://www.facebook.com/ElsayedAmerEladeeb" target="_blank" class="dock-item facebook">
-<svg viewBox="0 0 24 24"><path fill="currentColor" d="M22 12a10 10 0 10-11.5 9.9v-7h-2.3v-2.9h2.3V9.7c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.3h-1.1c-1.1 0-1.4.7-1.4 1.3v1.6h2.5l-.4 2.9h-2.1v7A10 10 0 0022 12z"/></svg>
 <span>Facebook</span>
 </a>
 
 <a href="mailto:elsayedamereladeeb@gmail.com" class="dock-item gmail">
-<svg viewBox="0 0 24 24"><path fill="currentColor" d="M2 4h20v16H2zM12 13L2 6v12h20V6z"/></svg>
 <span>Gmail</span>
 </a>
 
 </div>
 
-<!-- ===== POPUP ===== -->
-
+<!-- Popup -->
 <div class="popup-overlay" id="popup">
 <div class="popup">
 <h2>Scan WeChat QR</h2>
-<img src="wechat-qr.jpg" alt="WeChat QR">
+<img src="wechat-qr.jpg">
 <button class="close-btn" onclick="closePopup()">Close</button>
 </div>
 </div>
 
 <script>
+
+/* Typing */
 const text="IT Technician | Help Desk Specialist | Tech Support Expert";
 let i=0;
 function typing(){
@@ -219,13 +329,25 @@ setTimeout(typing,50);
 }}
 typing();
 
+/* Popup */
 function openPopup(){
 document.getElementById("popup").classList.add("active");
 }
-
 function closePopup(){
 document.getElementById("popup").classList.remove("active");
 }
+
+/* Reveal animation */
+const cards=document.querySelectorAll(".cert-card");
+window.addEventListener("scroll",()=>{
+cards.forEach(card=>{
+const rect=card.getBoundingClientRect();
+if(rect.top < window.innerHeight - 100){
+card.classList.add("show");
+}
+});
+});
+
 </script>
 
 </body>
