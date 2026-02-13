@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elsayed Amer Eladeeb | IT Technician</title>
+<title>Elsayed Amer Eladeeb | Professional Portfolio</title>
 
 <style>
 :root{
---primary:#00bcd4;
+--primary:#00e0ff;
 --bg:#0f172a;
 --glass:rgba(255,255,255,0.08);
 --text:#f1f5f9;
@@ -22,7 +22,7 @@ color:var(--text);
 overflow-x:hidden;
 }
 
-/* ===== HERO ===== */
+/* HERO */
 
 .hero{
 height:100vh;
@@ -30,43 +30,66 @@ display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
-url("profile.jpg") center/cover fixed;
+position:relative;
+background:url("profile.jpg") center/cover no-repeat fixed;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.7);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
 }
 
 .hero h1{
-font-size:44px;
+font-size:46px;
 margin-bottom:15px;
 }
 
 .typing{
 color:var(--primary);
-font-weight:600;
 font-size:20px;
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
-.phone{
-font-size:16px;
-opacity:.9;
-margin-bottom:15px;
+.phone a{
+color:var(--text);
+text-decoration:none;
+}
+
+.phone a:hover{
+color:var(--primary);
 }
 
 .btn{
 display:inline-block;
-margin-top:20px;
 padding:12px 30px;
 background:var(--primary);
 color:#000;
 border-radius:30px;
 text-decoration:none;
 font-weight:600;
+margin-top:15px;
 }
 
-/* ===== Sections ===== */
+/* PARTICLES */
+
+canvas{
+position:absolute;
+top:0;
+left:0;
+z-index:1;
+}
+
+/* Sections */
 
 .container{
-max-width:1100px;
+max-width:1200px;
 margin:auto;
 padding:80px 20px;
 }
@@ -76,68 +99,108 @@ background:var(--glass);
 backdrop-filter:blur(20px);
 padding:40px;
 border-radius:20px;
-box-shadow:0 10px 40px rgba(0,0,0,.4);
 margin-bottom:60px;
 }
 
 .section h2{
+color:var(--primary);
 margin-bottom:25px;
+}
+
+/* Skills */
+
+.skills{
+columns:2;
+line-height:1.8;
+}
+
+/* Counters */
+
+.counters{
+display:flex;
+justify-content:space-around;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.counter h3{
+font-size:40px;
 color:var(--primary);
 }
 
-/* ===== Certifications ===== */
+/* Gallery */
 
-.cert-grid{
+.filter-buttons{
+text-align:center;
+margin-bottom:30px;
+}
+
+.filter-buttons button{
+padding:10px 20px;
+margin:5px;
+border:none;
+border-radius:25px;
+cursor:pointer;
+background:#1e293b;
+color:white;
+transition:.3s;
+}
+
+.filter-buttons button.active,
+.filter-buttons button:hover{
+background:var(--primary);
+color:#000;
+}
+
+.gallery{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
+gap:20px;
 }
 
-.cert-card{
-position:relative;
+.gallery-item{
 overflow:hidden;
-border-radius:20px;
-transition:.4s ease;
-transform:translateY(40px);
-opacity:0;
-}
-
-.cert-card img{
-width:100%;
-display:block;
-border-radius:20px;
-transition:.6s ease;
-}
-
-.cert-card::after{
-content:"View Certificate";
-position:absolute;
-bottom:0;
-left:0;
-right:0;
-background:linear-gradient(transparent,rgba(0,0,0,.8));
-color:white;
-text-align:center;
-padding:20px;
-opacity:0;
+border-radius:15px;
+cursor:pointer;
 transition:.4s;
 }
 
-.cert-card:hover img{
+.gallery-item img{
+width:100%;
+display:block;
+transition:.4s;
+}
+
+.gallery-item:hover img{
 transform:scale(1.1);
 }
 
-.cert-card:hover::after{
-opacity:1;
+/* Lightbox */
+
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.9);
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+visibility:hidden;
+transition:.3s;
+z-index:3000;
 }
 
-/* Fade in animation */
-.show{
-transform:translateY(0);
+.lightbox.active{
 opacity:1;
+visibility:visible;
 }
 
-/* ===== Dock ===== */
+.lightbox img{
+max-width:90%;
+max-height:85vh;
+}
+
+/* Dock */
 
 .dock{
 position:fixed;
@@ -150,130 +213,111 @@ background:rgba(255,255,255,0.1);
 backdrop-filter:blur(15px);
 padding:20px 40px;
 border-radius:60px;
-box-shadow:0 10px 30px rgba(0,0,0,.5);
-z-index:1000;
+z-index:2000;
 }
 
 .dock-item{
-display:flex;
-flex-direction:column;
-align-items:center;
-text-decoration:none;
-color:white;
-font-size:12px;
-gap:6px;
-transition:.3s;
 cursor:pointer;
-}
-
-.dock-item svg{
-width:28px;
-height:28px;
+transition:.3s;
 }
 
 .dock-item:hover{
 transform:scale(1.2);
 }
 
-.whatsapp{color:#25D366;}
-.wechat{color:#07C160;}
-.linkedin{color:#0A66C2;}
-.facebook{color:#1877F2;}
-.gmail{color:#EA4335;}
+/* WeChat Popup */
 
-/* ===== Popup ===== */
-
-.popup-overlay{
+.popup{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.6);
-backdrop-filter:blur(8px);
+background:rgba(0,0,0,.85);
 display:flex;
 align-items:center;
 justify-content:center;
 opacity:0;
 visibility:hidden;
-transition:.4s;
-z-index:2000;
+transition:.3s;
+z-index:4000;
 }
 
-.popup-overlay.active{
+.popup.active{
 opacity:1;
 visibility:visible;
 }
 
-.popup{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(25px);
+.popup-content{
+background:#111;
 padding:40px;
-border-radius:25px;
-text-align:center;
-box-shadow:0 20px 60px rgba(0,0,0,.6);
-transform:scale(.8);
-transition:.4s;
-}
-
-.popup-overlay.active .popup{
-transform:scale(1);
-}
-
-.popup img{
-width:220px;
-border-radius:15px;
-margin-top:20px;
-}
-
-.close-btn{
-margin-top:25px;
-padding:10px 25px;
-border:none;
 border-radius:20px;
-background:var(--primary);
-cursor:pointer;
-font-weight:600;
+text-align:center;
 }
 
-@media(max-width:600px){
-.hero h1{font-size:28px}
+.popup-content img{
+width:250px;
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
-<div>
+<canvas id="particles"></canvas>
+<div class="hero-content">
 <h1>Elsayed Amer Eladeeb</h1>
 <div class="typing"></div>
-<div class="phone">📱 +20 103 361 0061</div>
+<div class="phone">
+📱 <a href="tel:+201033610061">+20 103 361 0061</a>
+</div>
 <a href="CV.pdf" class="btn" target="_blank">Download CV</a>
 </div>
 </section>
 
-<!-- CONTENT -->
 <div class="container">
 
 <div class="glass section">
-<h2>About Me</h2>
-<p>
-Experienced IT Technician specializing in hardware troubleshooting,
-Windows installation, networking basics, and remote support solutions.
-</p>
+<h2>Professional Highlights</h2>
+<div class="counters">
+<div class="counter"><h3 data-count="10">0</h3><p>+ Years Design Experience</p></div>
+<div class="counter"><h3 data-count="55">0</h3><p>Sales Team Managed</p></div>
+<div class="counter"><h3 data-count="20">0</h3><p>% Sales Growth Achieved</p></div>
+</div>
 </div>
 
 <div class="glass section">
-<h2>Certifications</h2>
-<div class="cert-grid">
-
-<!-- 12 Certificates -->
-<script>
-for(let i=1;i<=12;i++){
-document.write(`
-<div class="cert-card">
-<img src="cert${i}.jpg">
+<h2>Technical Skills</h2>
+<div class="skills">
+Operating Systems: Windows 11, 10, 7<br>
+IT Support & Troubleshooting<br>
+Hardware & Peripherals<br>
+Networking Basics<br>
+Security Basics<br>
+Remote Tools (TeamViewer, AnyDesk)<br>
+Microsoft Office & Google Workspace<br>
+Power BI (Basic)<br>
+Digital Literacy & Problem Solving
 </div>
-`);
+</div>
+
+<div class="glass section">
+<h2>Portfolio Gallery</h2>
+
+<div class="filter-buttons">
+<button class="active" onclick="filterSelection('all')">All</button>
+<button onclick="filterSelection('design')">Design</button>
+<button onclick="filterSelection('sales')">Sales</button>
+</div>
+
+<div class="gallery">
+
+<script>
+for(let i=1;i<=6;i++){
+document.write(`<div class="gallery-item design" onclick="openImage('design${i}.jpg')">
+<img src="design${i}.jpg"></div>`);
+}
+for(let i=1;i<=6;i++){
+document.write(`<div class="gallery-item sales" onclick="openImage('sales${i}.jpg')">
+<img src="sales${i}.jpg"></div>`);
 }
 </script>
 
@@ -282,44 +326,29 @@ document.write(`
 
 </div>
 
-<!-- Dock -->
-<div class="dock">
-
-<a href="https://wa.me/201033610061" target="_blank" class="dock-item whatsapp">
-<span>WhatsApp</span>
-</a>
-
-<div class="dock-item wechat" onclick="openPopup()">
-<span>WeChat</span>
+<div class="lightbox" id="lightbox" onclick="closeImage()">
+<img id="lightbox-img">
 </div>
 
-<a href="https://www.linkedin.com/in/elsayed-amer-eladeeb-0a02b5196/" target="_blank" class="dock-item linkedin">
-<span>LinkedIn</span>
-</a>
-
-<a href="https://www.facebook.com/ElsayedAmerEladeeb" target="_blank" class="dock-item facebook">
-<span>Facebook</span>
-</a>
-
-<a href="mailto:elsayedamereladeeb@gmail.com" class="dock-item gmail">
-<span>Gmail</span>
-</a>
-
-</div>
-
-<!-- Popup -->
-<div class="popup-overlay" id="popup">
-<div class="popup">
-<h2>Scan WeChat QR</h2>
+<div class="popup" id="wechatPopup" onclick="closePopup()">
+<div class="popup-content">
+<h3>Scan WeChat QR</h3>
 <img src="wechat-qr.jpg">
-<button class="close-btn" onclick="closePopup()">Close</button>
 </div>
+</div>
+
+<div class="dock">
+<a href="https://wa.me/201033610061" target="_blank" class="dock-item">WhatsApp</a>
+<div class="dock-item" onclick="openPopup()">WeChat</div>
+<a href="https://www.linkedin.com/in/elsayed-amer-eladeeb-0a02b5196/" target="_blank" class="dock-item">LinkedIn</a>
+<a href="https://www.facebook.com/ElsayedAmerEladeeb" target="_blank" class="dock-item">Facebook</a>
+<a href="mailto:elsayedamereladeeb@gmail.com" class="dock-item">Gmail</a>
 </div>
 
 <script>
 
 /* Typing */
-const text="IT Technician | Help Desk Specialist | Tech Support Expert";
+const text="IT Support | Sales Leader | Freelance Designer";
 let i=0;
 function typing(){
 if(i<text.length){
@@ -329,24 +358,80 @@ setTimeout(typing,50);
 }}
 typing();
 
-/* Popup */
-function openPopup(){
-document.getElementById("popup").classList.add("active");
+/* Counters */
+const counters=document.querySelectorAll("[data-count]");
+counters.forEach(counter=>{
+const update=()=>{
+const target=+counter.getAttribute("data-count");
+const count=+counter.innerText;
+const speed=target/50;
+if(count<target){
+counter.innerText=Math.ceil(count+speed);
+setTimeout(update,30);
+}else{
+counter.innerText=target;
 }
-function closePopup(){
-document.getElementById("popup").classList.remove("active");
+};
+update();
+});
+
+/* Filter */
+function filterSelection(category){
+let items=document.querySelectorAll(".gallery-item");
+document.querySelectorAll(".filter-buttons button").forEach(btn=>btn.classList.remove("active"));
+event.target.classList.add("active");
+items.forEach(item=>{
+if(category==="all" || item.classList.contains(category)){
+item.style.display="block";
+}else{
+item.style.display="none";
+}
+});
 }
 
-/* Reveal animation */
-const cards=document.querySelectorAll(".cert-card");
-window.addEventListener("scroll",()=>{
-cards.forEach(card=>{
-const rect=card.getBoundingClientRect();
-if(rect.top < window.innerHeight - 100){
-card.classList.add("show");
+/* Lightbox */
+function openImage(src){
+document.getElementById("lightbox-img").src=src;
+document.getElementById("lightbox").classList.add("active");
 }
+function closeImage(){
+document.getElementById("lightbox").classList.remove("active");
+}
+
+/* WeChat Popup */
+function openPopup(){
+document.getElementById("wechatPopup").classList.add("active");
+}
+function closePopup(){
+document.getElementById("wechatPopup").classList.remove("active");
+}
+
+/* Particles */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+for(let i=0;i<80;i++){
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:2+Math.random()*2,d:Math.random()*1});
+}
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="rgba(0,224,255,.5)";
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
 });
+update();
+}
+function update(){
+particles.forEach(p=>{
+p.y+=p.d;
+if(p.y>canvas.height){p.y=0;}
 });
+}
+setInterval(draw,33);
 
 </script>
 
