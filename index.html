@@ -124,24 +124,32 @@ flex-direction:column;
 gap:15px;
 }
 
-.social a{
-width:55px;
-height:55px;
-background:var(--primary);
+.social-btn{
 display:flex;
 align-items:center;
-justify-content:center;
-border-radius:50%;
-color:#000;
+gap:8px;
+padding:12px 18px;
+border-radius:50px;
+color:#fff;
 text-decoration:none;
-font-weight:bold;
-font-size:18px;
+font-weight:600;
+box-shadow:0 8px 20px rgba(0,0,0,.3);
 transition:.3s;
+font-size:14px;
 }
 
-.social a:hover{
-transform:scale(1.15);
+.social-btn svg{
+width:18px;
+height:18px;
 }
+
+.social-btn:hover{
+transform:translateY(-5px);
+}
+
+.whatsapp{background:#25D366;}
+.facebook{background:#1877F2;}
+.linkedin{background:#0A66C2;}
 
 .btn{
 display:inline-block;
@@ -231,9 +239,28 @@ Windows installation, networking basics, and remote support solutions.
 </div>
 
 <div class="social">
-<a href="https://wa.me/201033610061" target="_blank">W</a>
-<a href="https://www.facebook.com/ElsayedAmerEladeeb" target="_blank">F</a>
-<a href="https://www.linkedin.com/in/elsayed-amer-eladeeb-0a02b5196/" target="_blank">L</a>
+
+<a href="https://wa.me/201033610061" target="_blank" class="social-btn whatsapp">
+<svg viewBox="0 0 32 32">
+<path fill="currentColor" d="M16 .4C7.5.4.5 7.4.5 15.9c0 2.8.8 5.6 2.2 8L.4 31.6l7.9-2.1c2.3 1.3 4.9 2 7.7 2 8.5 0 15.5-7 15.5-15.5S24.5.4 16 .4zm0 28.2c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.4-2-6.8C3.1 8.1 9.1 2.1 16 2.1S28.9 8.1 28.9 15 22.9 28.6 16 28.6zm7.4-9.7c-.4-.2-2.3-1.1-2.6-1.2s-.6-.2-.8.2c-.2.4-.9 1.2-1.1 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.6.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6 0-.2-.8-2-1.1-2.7-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.4-1.2 1.1-1.2 2.7 0 1.6 1.2 3.1 1.4 3.3.2.2 2.4 3.7 5.9 5.1.8.3 1.4.5 1.9.6.8.2 1.5.2 2.1.1.6-.1 2-0.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.2-.4-.3-.8-.5z"/>
+</svg>
+WhatsApp
+</a>
+
+<a href="https://www.facebook.com/ElsayedAmerEladeeb" target="_blank" class="social-btn facebook">
+<svg viewBox="0 0 24 24">
+<path fill="currentColor" d="M22 12a10 10 0 10-11.5 9.9v-7h-2.3v-2.9h2.3V9.7c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.3h-1.1c-1.1 0-1.4.7-1.4 1.3v1.6h2.5l-.4 2.9h-2.1v7A10 10 0 0022 12z"/>
+</svg>
+Facebook
+</a>
+
+<a href="https://www.linkedin.com/in/elsayed-amer-eladeeb-0a02b5196/" target="_blank" class="social-btn linkedin">
+<svg viewBox="0 0 24 24">
+<path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4v16h-4V8zm7 0h3.8v2.2h.1c.5-1 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6V24h-4v-7.1c0-1.7 0-3.9-2.4-3.9s-2.8 1.8-2.8 3.8V24h-4V8z"/>
+</svg>
+LinkedIn
+</a>
+
 </div>
 
 <script>
