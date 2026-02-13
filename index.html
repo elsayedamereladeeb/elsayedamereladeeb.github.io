@@ -3,100 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Elsayed Amer Eladeeb - IT Technician Portfolio">
 <title>Elsayed Amer Eladeeb | IT Technician</title>
 
 <style>
 :root{
---primary:#2563eb;
---bg:#f1f5f9;
---card:#ffffff;
---text:#1e293b;
---muted:#64748b;
-}
-
-body.dark{
+--primary:#00bcd4;
 --bg:#0f172a;
---card:#1e293b;
+--glass:rgba(255,255,255,0.08);
 --text:#f1f5f9;
---muted:#94a3b8;
 }
 
-*{box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
+
 body{
-margin:0;
 font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-background:var(--bg);
+background:linear-gradient(135deg,#0f172a,#1e293b);
 color:var(--text);
-transition:.3s;
+overflow-x:hidden;
+}
+
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url("profile.jpg") center/cover fixed;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:15px;
+}
+
+.typing{
+color:var(--primary);
+font-weight:600;
+font-size:20px;
 }
 
 .container{
 max-width:1100px;
 margin:auto;
-padding:40px 20px;
+padding:80px 20px;
 }
 
-.card{
-background:var(--card);
+.glass{
+background:var(--glass);
+backdrop-filter:blur(20px);
 padding:40px;
 border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-animation:fade .8s ease;
+box-shadow:0 10px 40px rgba(0,0,0,.4);
+margin-bottom:60px;
 }
 
-@keyframes fade{
-from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:none}
-}
-
-.header{
-display:flex;
-align-items:center;
-gap:30px;
-flex-wrap:wrap;
-}
-
-.profile{
-width:140px;
-height:140px;
-border-radius:50%;
-object-fit:cover;
-border:4px solid var(--primary);
-}
-
-h1{margin:0;font-size:32px}
-.subtitle{color:var(--muted);margin-top:5px}
-
-.contact p{
-margin:6px 0;
-display:flex;
-align-items:center;
-gap:8px;
-font-size:14px;
-}
-
-svg{width:16px;height:16px;fill:var(--primary)}
-
-.section{margin-top:40px}
 .section h2{
-border-bottom:2px solid var(--primary);
-display:inline-block;
-padding-bottom:5px;
-margin-bottom:15px;
+margin-bottom:20px;
+color:var(--primary);
 }
 
 .skills{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:10px;
+gap:15px;
 }
 
 .skill{
-background:var(--bg);
-padding:10px 15px;
+background:rgba(255,255,255,.05);
+padding:15px;
 border-radius:15px;
-font-size:14px;
+text-align:center;
+transition:.3s;
+}
+
+.skill:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.counters{
+display:flex;
+justify-content:space-around;
+flex-wrap:wrap;
+gap:30px;
+}
+
+.counter{
+text-align:center;
+}
+
+.counter h3{
+font-size:40px;
+color:var(--primary);
 }
 
 .cert-grid{
@@ -108,126 +107,162 @@ gap:20px;
 .cert-grid img{
 width:100%;
 border-radius:15px;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
+transition:.4s;
+}
+
+.cert-grid img:hover{
+transform:scale(1.08);
+box-shadow:0 15px 35px rgba(0,0,0,.5);
+}
+
+.social{
+position:fixed;
+bottom:20px;
+right:20px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.social a{
+width:55px;
+height:55px;
+background:var(--primary);
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+color:#000;
+text-decoration:none;
+font-weight:bold;
+font-size:18px;
+transition:.3s;
+}
+
+.social a:hover{
+transform:scale(1.15);
 }
 
 .btn{
 display:inline-block;
-margin-top:15px;
-padding:12px 25px;
+margin-top:20px;
+padding:12px 30px;
 background:var(--primary);
-color:#fff;
-text-decoration:none;
+color:#000;
 border-radius:30px;
+text-decoration:none;
 font-weight:600;
 }
 
-.toggle{
-position:fixed;
-top:20px;
-right:20px;
-background:var(--primary);
-color:#fff;
-border:none;
-padding:10px 15px;
-border-radius:25px;
-cursor:pointer;
-font-size:13px;
-}
-
 @media(max-width:600px){
-.header{flex-direction:column;text-align:center}
+.hero h1{font-size:28px}
 }
 </style>
 </head>
 
 <body>
 
-<button class="toggle" onclick="toggleMode()">Dark / Light</button>
-
-<div class="container">
-<div class="card">
-
-<div class="header">
-<img src="profile.jpg" alt="Profile Photo" class="profile" loading="lazy">
-
+<section class="hero">
 <div>
 <h1>Elsayed Amer Eladeeb</h1>
-<div class="subtitle">IT Technician | Help Desk Specialist</div>
-
-<div class="contact">
-<p>
-<svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.7 3.9 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.3 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.1 22 2 13.9 2 3c0-.6.4-1 1-1h4.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.3 1l-2.2 2.2z"/></svg>
-01033610061
-</p>
-
-<p>
-<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-elsayedamereladeeb@gmail.com
-</p>
-
-<p>
-<svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5 14.5 7.6 14.5 9 13.4 11.5 12 11.5z"/></svg>
-Mansoura, Egypt
-</p>
+<div class="typing"></div>
+<a href="CV.pdf" class="btn" target="_blank">Download CV</a>
 </div>
+</section>
 
-<a href="CV.pdf" target="_blank" class="btn">Download CV</a>
+<div class="container">
 
-</div>
-</div>
-
-<div class="section">
+<div class="glass section">
 <h2>About Me</h2>
 <p>
 Experienced IT Technician specializing in hardware troubleshooting,
-Windows installation, networking basics, and remote technical support.
-Strong analytical and problem-solving abilities with customer-focused mindset.
+Windows installation, networking basics, and remote support solutions.
 </p>
 </div>
 
-<div class="section">
+<div class="glass section">
 <h2>Technical Skills</h2>
 <div class="skills">
 <div class="skill">Windows 7/10/11</div>
 <div class="skill">Hardware & Peripherals</div>
-<div class="skill">Basic Networking</div>
+<div class="skill">Networking Basics</div>
 <div class="skill">Remote Support</div>
 <div class="skill">Microsoft Office</div>
-<div class="skill">Power BI (Basic)</div>
+<div class="skill">Power BI</div>
 </div>
 </div>
 
-<div class="section">
+<div class="glass section">
+<h2>Professional Highlights</h2>
+<div class="counters">
+<div class="counter">
+<h3 data-count="12">0</h3>
+<p>Certificates</p>
+</div>
+<div class="counter">
+<h3 data-count="5">0</h3>
+<p>Years Experience</p>
+</div>
+<div class="counter">
+<h3 data-count="100">0</h3>
+<p>Projects Supported</p>
+</div>
+</div>
+</div>
+
+<div class="glass section">
 <h2>Certificates</h2>
 <div class="cert-grid">
-<img src="cert1.jpg" loading="lazy">
-<img src="cert2.jpg" loading="lazy">
-<img src="cert3.jpg" loading="lazy">
-<img src="cert4.jpg" loading="lazy">
-<img src="cert5.jpg" loading="lazy">
-<img src="cert6.jpg" loading="lazy">
-<img src="cert7.jpg" loading="lazy">
-<img src="cert8.jpg" loading="lazy">
-<img src="cert9.jpg" loading="lazy">
-<img src="cert10.jpg" loading="lazy">
-<img src="cert11.jpg" loading="lazy">
-<img src="cert12.jpg" loading="lazy">
+<img src="cert1.jpg">
+<img src="cert2.jpg">
+<img src="cert3.jpg">
+<img src="cert4.jpg">
+<img src="cert5.jpg">
+<img src="cert6.jpg">
+<img src="cert7.jpg">
+<img src="cert8.jpg">
+<img src="cert9.jpg">
+<img src="cert10.jpg">
+<img src="cert11.jpg">
+<img src="cert12.jpg">
 </div>
 </div>
 
 </div>
+
+<div class="social">
+<a href="https://wa.me/201033610061" target="_blank">W</a>
+<a href="https://www.facebook.com/ElsayedAmerEladeeb" target="_blank">F</a>
+<a href="https://www.linkedin.com/in/elsayed-amer-eladeeb-0a02b5196/" target="_blank">L</a>
 </div>
 
 <script>
-if(localStorage.getItem("theme")==="dark"){
-document.body.classList.add("dark");
+const text="IT Technician | Help Desk Specialist | Tech Support Expert";
+let i=0;
+function typing(){
+if(i<text.length){
+document.querySelector(".typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,50);
 }
-function toggleMode(){
-document.body.classList.toggle("dark");
-localStorage.setItem("theme",
-document.body.classList.contains("dark")?"dark":"light");
 }
+typing();
+
+const counters=document.querySelectorAll("[data-count]");
+counters.forEach(counter=>{
+const update=()=>{
+const target=+counter.getAttribute("data-count");
+const count=+counter.innerText;
+const speed=target/50;
+if(count<target){
+counter.innerText=Math.ceil(count+speed);
+setTimeout(update,30);
+}else{
+counter.innerText=target;
+}
+};
+update();
+});
 </script>
 
 </body>
