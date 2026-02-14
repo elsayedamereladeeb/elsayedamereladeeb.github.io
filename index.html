@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elsayed Amer Eladeeb | Professional Portfolio</title>
+<title>Elsayed Amer Elsayed Awad Eladeeb | Professional Portfolio</title>
 
 <style>
 :root{
@@ -122,6 +122,53 @@ line-height:2;
 font-size:15px;
 }
 
+/* MASONRY CERTIFICATIONS */
+
+.masonry{
+column-count:3;
+column-gap:15px;
+}
+
+.masonry-item{
+position:relative;
+margin-bottom:15px;
+break-inside:avoid;
+border-radius:18px;
+overflow:hidden;
+}
+
+.masonry-item img{
+width:100%;
+display:block;
+border-radius:18px;
+transition:.4s;
+cursor:pointer;
+}
+
+.masonry-item:hover img{
+transform:scale(1.05);
+}
+
+/* Neon Animated Border */
+
+.masonry-item::before{
+content:"";
+position:absolute;
+inset:-2px;
+border-radius:20px;
+padding:2px;
+background:linear-gradient(45deg,#00e0ff,#8b0000,#00e0ff);
+background-size:300% 300%;
+animation:borderMove 6s linear infinite;
+z-index:-1;
+}
+
+@keyframes borderMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
 /* GALLERY */
 
 .gallery{
@@ -175,11 +222,12 @@ left:50%;
 transform:translateX(-50%);
 display:flex;
 gap:25px;
-background:rgba(255,255,255,0.1);
-backdrop-filter:blur(15px);
-padding:18px 40px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+padding:18px 50px;
 border-radius:60px;
 z-index:2000;
+box-shadow:0 10px 40px rgba(0,0,0,.5);
 }
 
 .dock a{
@@ -193,11 +241,11 @@ transition:.3s;
 }
 
 .dock a img{
-width:20px;
+width:22px;
 }
 
 .dock a:hover{
-transform:scale(1.15);
+transform:translateY(-5px) scale(1.1);
 color:var(--primary);
 }
 
@@ -223,9 +271,10 @@ visibility:visible;
 
 .popup-content{
 background:#111;
-padding:40px;
+padding:50px;
 border-radius:20px;
 text-align:center;
+box-shadow:0 0 30px rgba(0,224,255,.4);
 }
 
 .popup-content img{
@@ -254,63 +303,29 @@ width:250px;
 <div class="glass section">
 <h2>Professional Highlights</h2>
 <div class="counters">
-<div class="counter"><h3 data-count="10">0</h3><p>+ Years Design Experience (Egypt & KSA)</p></div>
-<div class="counter"><h3 data-count="55">0</h3><p>Sales Promoters Managed</p></div>
-<div class="counter"><h3 data-count="20">0</h3><p>% Sales Growth Achieved</p></div>
-<div class="counter"><h3 data-count="100">0</h3><p>Academic Projects Supported</p></div>
-</div>
-</div>
-
-<!-- SKILLS -->
-<div class="glass section">
-<h2>Technical Skills</h2>
-<div class="skills">
-Operating Systems: Windows 11, 10, 7<br>
-IT Support & Troubleshooting<br>
-Hardware & Peripherals<br>
-Networking Basics<br>
-Security Basics<br>
-Remote Tools (TeamViewer, AnyDesk)<br>
-Microsoft Office & Google Workspace<br>
-Power BI (Basic)<br>
-Digital Literacy & Analytical Thinking
+<div class="counter"><h3 data-count="10">0</h3><p>+ Years Design Experience</p></div>
+<div class="counter"><h3 data-count="55">0</h3><p>Sales Team Managed</p></div>
+<div class="counter"><h3 data-count="20">0</h3><p>% Sales Growth</p></div>
+<div class="counter"><h3 data-count="100">0</h3><p>Projects Supported</p></div>
 </div>
 </div>
 
 <!-- CERTIFICATIONS -->
 <div class="glass section">
 <h2>Certifications</h2>
-<div class="gallery">
-<script>
-for(let i=1;i<=12;i++){
-document.write(`<img src="cert${i}.jpg" onclick="openImage('cert${i}.jpg')">`);
-}
-</script>
-</div>
+<div class="masonry" id="certContainer"></div>
 </div>
 
 <!-- SALES -->
 <div class="glass section">
 <h2>Sales Projects</h2>
-<div class="gallery">
-<script>
-for(let i=1;i<=6;i++){
-document.write(`<img src="sales${i}.jpg" onclick="openImage('sales${i}.jpg')">`);
-}
-</script>
-</div>
+<div class="gallery" id="salesContainer"></div>
 </div>
 
 <!-- DESIGN -->
 <div class="glass section">
 <h2>Design Portfolio</h2>
-<div class="gallery">
-<script>
-for(let i=1;i<=12;i++){
-document.write(`<img src="design${i}.jpg" onclick="openImage('design${i}.jpg')">`);
-}
-</script>
-</div>
+<div class="gallery" id="designContainer"></div>
 </div>
 
 </div>
@@ -330,6 +345,7 @@ document.write(`<img src="design${i}.jpg" onclick="openImage('design${i}.jpg')">
 
 <!-- DOCK -->
 <div class="dock">
+
 <a href="https://wa.me/201033610061" target="_blank">
 <img src="whatsapp.png"> WhatsApp
 </a>
@@ -349,10 +365,16 @@ document.write(`<img src="design${i}.jpg" onclick="openImage('design${i}.jpg')">
 <a href="mailto:elsayedamereladeeb@gmail.com">
 <img src="gmail.png"> Gmail
 </a>
+
+<a href="https://www.behance.net/ElsayedAmer" target="_blank">
+<img src="behance.png"> Behance
+</a>
+
 </div>
 
 <script>
 
+/* Typing */
 const text="IT Support | Sales Leader | Freelance Designer";
 let i=0;
 function typing(){
@@ -363,6 +385,7 @@ setTimeout(typing,50);
 }}
 typing();
 
+/* Counters */
 const counters=document.querySelectorAll("[data-count]");
 counters.forEach(counter=>{
 const update=()=>{
@@ -379,19 +402,36 @@ counter.innerText=target;
 update();
 });
 
+/* Dynamic Images */
+
+const certContainer=document.getElementById("certContainer");
+for(let i=1;i<=12;i++){
+certContainer.innerHTML+=`<div class="masonry-item"><img src="cert${i}.jpg" onclick="openImage('cert${i}.jpg')"></div>`;
+}
+
+const salesContainer=document.getElementById("salesContainer");
+for(let i=1;i<=6;i++){
+salesContainer.innerHTML+=`<img src="sales${i}.jpg" onclick="openImage('sales${i}.jpg')">`;
+}
+
+const designContainer=document.getElementById("designContainer");
+for(let i=1;i<=12;i++){
+designContainer.innerHTML+=`<img src="design${i}.jpg" onclick="openImage('design${i}.jpg')">`;
+}
+
+/* Lightbox */
 function openImage(src){
 document.getElementById("lightbox-img").src=src;
 document.getElementById("lightbox").classList.add("active");
 }
-
 function closeImage(){
 document.getElementById("lightbox").classList.remove("active");
 }
 
+/* Popup */
 function openPopup(){
 document.getElementById("wechatPopup").classList.add("active");
 }
-
 function closePopup(){
 document.getElementById("wechatPopup").classList.remove("active");
 }
