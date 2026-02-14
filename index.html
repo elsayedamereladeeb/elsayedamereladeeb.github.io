@@ -92,6 +92,14 @@ backdrop-filter:blur(20px);
 padding:50px;
 border-radius:20px;
 margin-bottom:60px;
+opacity:0;
+transform:translateY(40px);
+transition:1s ease;
+}
+
+.glass.show{
+opacity:1;
+transform:translateY(0);
 }
 
 .section h2{
@@ -114,44 +122,70 @@ font-size:42px;
 color:var(--primary);
 }
 
-/* SKILLS */
+/* FILTER */
 
-.skills{
-columns:2;
-line-height:2;
-font-size:15px;
+.filter-buttons{
+display:flex;
+gap:15px;
+margin-bottom:25px;
+flex-wrap:wrap;
 }
 
-/* MASONRY CERTIFICATIONS */
+.filter-buttons button{
+padding:8px 20px;
+border:none;
+border-radius:20px;
+background:#1e293b;
+color:white;
+cursor:pointer;
+transition:.3s;
+}
+
+.filter-buttons button.active,
+.filter-buttons button:hover{
+background:var(--primary);
+color:#000;
+}
+
+/* MASONRY */
 
 .masonry{
 column-count:3;
 column-gap:15px;
 }
 
-.masonry-item{
+.gallery{
+column-count:3;
+column-gap:15px;
+}
+
+.masonry-item,
+.gallery-item{
 position:relative;
 margin-bottom:15px;
 break-inside:avoid;
 border-radius:18px;
 overflow:hidden;
+cursor:pointer;
 }
 
-.masonry-item img{
+.masonry-item img,
+.gallery-item img{
 width:100%;
 display:block;
 border-radius:18px;
 transition:.4s;
-cursor:pointer;
 }
 
-.masonry-item:hover img{
+.masonry-item:hover img,
+.gallery-item:hover img{
 transform:scale(1.05);
 }
 
-/* Neon Animated Border */
+/* Neon Border */
 
-.masonry-item::before{
+.masonry-item::before,
+.gallery-item::before{
 content:"";
 position:absolute;
 inset:-2px;
@@ -167,25 +201,6 @@ z-index:-1;
 0%{background-position:0% 50%;}
 50%{background-position:100% 50%;}
 100%{background-position:0% 50%;}
-}
-
-/* GALLERY */
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.gallery img{
-width:100%;
-border-radius:15px;
-cursor:pointer;
-transition:.4s;
-}
-
-.gallery img:hover{
-transform:scale(1.08);
 }
 
 /* LIGHTBOX */
@@ -211,6 +226,7 @@ visibility:visible;
 .lightbox img{
 max-width:90%;
 max-height:85vh;
+border-radius:15px;
 }
 
 /* DOCK */
@@ -281,6 +297,14 @@ box-shadow:0 0 30px rgba(0,224,255,.4);
 width:250px;
 }
 
+@media(max-width:900px){
+.masonry,.gallery{column-count:2;}
+}
+
+@media(max-width:600px){
+.masonry,.gallery{column-count:1;}
+.hero h1{font-size:28px;}
+}
 </style>
 </head>
 
@@ -288,10 +312,10 @@ width:250px;
 
 <section class="hero">
 <div class="hero-content">
-<h1>Elsayed Amer Eladeeb</h1>
+<h1>Elsayed Amer Elsayed Awad Eladeeb</h1>
 <div class="typing"></div>
 <div class="phone">
-📱 <a href="tel:+201033610061">+20 103 361 0061</a>
+📱 <a href="tel:+201033610061">+2 010 33 61 00 61</a>
 </div>
 <a href="CV.pdf" class="btn" target="_blank">Download CV</a>
 </div>
@@ -299,43 +323,43 @@ width:250px;
 
 <div class="container">
 
-<!-- HIGHLIGHTS -->
 <div class="glass section">
 <h2>Professional Highlights</h2>
 <div class="counters">
-<div class="counter"><h3 data-count="10">0</h3><p>+ Years Design Experience</p></div>
-<div class="counter"><h3 data-count="55">0</h3><p>Sales Team Managed</p></div>
+<div class="counter"><h3 data-count="13">0</h3><p>+ Years Design Experience</p></div>
+<div class="counter"><h3 data-count="60">0</h3><p>Sales Staff Managed</p></div>
 <div class="counter"><h3 data-count="20">0</h3><p>% Sales Growth</p></div>
 <div class="counter"><h3 data-count="100">0</h3><p>Projects Supported</p></div>
 </div>
 </div>
 
-<!-- CERTIFICATIONS -->
 <div class="glass section">
-<h2>Certifications</h2>
+<h2>Portfolio</h2>
+
+<div class="filter-buttons">
+<button class="active" onclick="filterItems('all',event)">All</button>
+<button onclick="filterItems('cert',event)">Certifications</button>
+<button onclick="filterItems('sales',event)">Sales</button>
+<button onclick="filterItems('design',event)">Design</button>
+</div>
+
+<h3 style="margin-bottom:15px;">Certifications</h3>
 <div class="masonry" id="certContainer"></div>
-</div>
 
-<!-- SALES -->
-<div class="glass section">
-<h2>Sales Projects</h2>
+<h3 style="margin:40px 0 15px;">Sales Projects</h3>
 <div class="gallery" id="salesContainer"></div>
-</div>
 
-<!-- DESIGN -->
-<div class="glass section">
-<h2>Design Portfolio</h2>
+<h3 style="margin:40px 0 15px;">Design Portfolio</h3>
 <div class="gallery" id="designContainer"></div>
-</div>
 
 </div>
 
-<!-- LIGHTBOX -->
+</div>
+
 <div class="lightbox" id="lightbox" onclick="closeImage()">
 <img id="lightbox-img">
 </div>
 
-<!-- WECHAT POPUP -->
 <div class="popup" id="wechatPopup" onclick="closePopup()">
 <div class="popup-content">
 <h3>Scan WeChat QR</h3>
@@ -343,7 +367,6 @@ width:250px;
 </div>
 </div>
 
-<!-- DOCK -->
 <div class="dock">
 
 <a href="https://wa.me/201033610061" target="_blank">
@@ -385,38 +408,69 @@ setTimeout(typing,50);
 }}
 typing();
 
-/* Counters */
-const counters=document.querySelectorAll("[data-count]");
-counters.forEach(counter=>{
-const update=()=>{
+/* Scroll Animation */
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+},{threshold:0.2});
+
+document.querySelectorAll(".glass").forEach(el=>{
+observer.observe(el);
+});
+
+/* Lazy Counters */
+const counterObserver=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+const counter=entry.target;
 const target=+counter.getAttribute("data-count");
-const count=+counter.innerText;
-const speed=target/50;
+let count=0;
+const update=()=>{
+const speed=target/60;
 if(count<target){
-counter.innerText=Math.ceil(count+speed);
-setTimeout(update,30);
+count+=speed;
+counter.innerText=Math.ceil(count);
+requestAnimationFrame(update);
 }else{
 counter.innerText=target;
 }
 };
 update();
+counterObserver.unobserve(counter);
+}
+});
+},{threshold:0.5});
+
+document.querySelectorAll("[data-count]").forEach(counter=>{
+counterObserver.observe(counter);
 });
 
 /* Dynamic Images */
-
 const certContainer=document.getElementById("certContainer");
 for(let i=1;i<=12;i++){
-certContainer.innerHTML+=`<div class="masonry-item"><img src="cert${i}.jpg" onclick="openImage('cert${i}.jpg')"></div>`;
+certContainer.innerHTML+=`
+<div class="masonry-item cert">
+<img src="cert${i}.jpg" onclick="openImage('cert${i}.jpg')">
+</div>`;
 }
 
 const salesContainer=document.getElementById("salesContainer");
 for(let i=1;i<=6;i++){
-salesContainer.innerHTML+=`<img src="sales${i}.jpg" onclick="openImage('sales${i}.jpg')">`;
+salesContainer.innerHTML+=`
+<div class="gallery-item sales">
+<img src="sales${i}.jpg" onclick="openImage('sales${i}.jpg')">
+</div>`;
 }
 
 const designContainer=document.getElementById("designContainer");
 for(let i=1;i<=12;i++){
-designContainer.innerHTML+=`<img src="design${i}.jpg" onclick="openImage('design${i}.jpg')">`;
+designContainer.innerHTML+=`
+<div class="gallery-item design">
+<img src="design${i}.jpg" onclick="openImage('design${i}.jpg')">
+</div>`;
 }
 
 /* Lightbox */
@@ -426,6 +480,24 @@ document.getElementById("lightbox").classList.add("active");
 }
 function closeImage(){
 document.getElementById("lightbox").classList.remove("active");
+}
+
+/* Filter */
+function filterItems(category,event){
+document.querySelectorAll(".filter-buttons button").forEach(btn=>{
+btn.classList.remove("active");
+});
+event.target.classList.add("active");
+
+document.querySelectorAll(".cert, .sales, .design").forEach(item=>{
+if(category==="all"){
+item.style.display="block";
+}else if(item.classList.contains(category)){
+item.style.display="block";
+}else{
+item.style.display="none";
+}
+});
 }
 
 /* Popup */
